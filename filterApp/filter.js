@@ -75,5 +75,27 @@ displayProducts(data);
 
 
 searchInput.addEventListener("keyup", (e) => {
-    console.log(e.target.value)
+    const value = e.target.value.toLowerCase();
+    if (value) {
+        displayProducts(data.filter(item => item.name.toLowerCase().indexOf(vlaue) !== -1))
+    } else {
+        displayProducts(data);
+    }
 })
+
+const setCategories = () => {
+    const allCats = data.map((item) => item.cat);
+    const categories = [
+        "All",
+        ...allCats.filter((item, i) => {
+            return allCats.indexOf(item) === i;
+        }),
+    ]
+
+    categoriesContainer.innerHTML = categories.map(cat =>
+        `
+            <span class="categorie" >${cat} </span>
+        `
+    ).join('')
+}
+setCategories();
