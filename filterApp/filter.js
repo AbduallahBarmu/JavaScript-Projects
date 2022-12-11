@@ -83,6 +83,7 @@ searchInput.addEventListener("keyup", (e) => {
     }
 })
 
+
 const setCategories = () => {
     const allCats = data.map((item) => item.cat);
     const categories = [
@@ -90,12 +91,31 @@ const setCategories = () => {
         ...allCats.filter((item, i) => {
             return allCats.indexOf(item) === i;
         }),
-    ]
+    ];
 
-    categoriesContainer.innerHTML = categories.map(cat =>
-        `
-            <span class="categorie" >${cat} </span>
-        `
-    ).join('')
-}
-setCategories();
+    categoriesContainer.innerHTML = categories
+        .map(
+            (cat) =>
+                `
+            <span class="cat">${cat}</span>
+             `
+        )
+        .join("");
+
+    categoriesContainer.addEventListener("click", (e) => {
+        const selectedCat = e.target.textContent;
+
+        selectedCat === "All"
+            ? displayProducts(data)
+            : displayProducts(data.filter((item) => item.cat === selectedCat));
+    });
+};
+
+
+
+const set
+
+
+setCategories()
+
+
